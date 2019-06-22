@@ -35,7 +35,6 @@ class TableViewController: UITableViewController {
         let rowKey = photos.allKeys[indexPath.row] as! String
         
         DispatchQueue.global(qos: .background).async {
-            var image : UIImage?
             
             guard let imageURL = URL(string: self.photos[rowKey] as! String),
                 let imageData = try? Data(contentsOf: imageURL) else {
@@ -48,7 +47,7 @@ class TableViewController: UITableViewController {
             
             
             let unfilteredImage = UIImage(data:imageData)
-            image = self.applySepiaFilter(unfilteredImage!)
+            let image = self.applySepiaFilter(unfilteredImage!)
             
             DispatchQueue.main.async {
                 // Configure the cell...
